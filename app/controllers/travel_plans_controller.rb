@@ -15,4 +15,10 @@ class TravelPlansController < ApplicationController
         render :new, status: :unprocessable_entity
       end
     end
+
+    private
+
+    def travel_plan_params
+      params.require(:travel_plan).permit(:title, :country, :note, :due)
+    end
 end
