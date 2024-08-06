@@ -72,3 +72,5 @@ end
 gem 'rubocop'
 
 gem 'sorcery'
+
+gem 'enumerize'
