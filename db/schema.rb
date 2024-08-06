@@ -10,9 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 20240806) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_06_152803) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "tasks", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "body"
+    t.date "due"
+    t.string "status", default: "pending", null: false
+    t.string "baggage", default: "carry", null: false
+    t.bigint "user_id"
+    t.bigint "travel_plan_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["travel_plan_id"], name: "index_tasks_on_travel_plan_id"
+    t.index ["user_id"], name: "index_tasks_on_user_id"
+  end
+
+  create_table "travel_plans", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "country"
+    t.text "note"
+    t.date "due"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "task_id"
+    t.index ["task_id"], name: "index_travel_plans_on_task_id"
+    t.index ["user_id"], name: "index_travel_plans_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
@@ -24,4 +51,8 @@ ActiveRecord::Schema[7.1].define(version: 20240806) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "tasks", "travel_plans"
+  add_foreign_key "tasks", "users"
+  add_foreign_key "travel_plans", "tasks"
+  add_foreign_key "travel_plans", "users"
 end
