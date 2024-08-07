@@ -20,6 +20,28 @@ class TasksController < ApplicationController
     end
   end
 
+  def edit
+    @travel_plan = TravelPlan.find(params[:travel_plan_id])
+    @task = @travel_plan.tasks.find(params[:id])
+  end
+
+  def update
+    @travel_plan = TravelPlan.find(params[:travel_plan_id])
+    @task = @travel_plan.tasks.find(params[:id])
+    if @task.update(task_params)
+      redirect_to travel_plan_tasks_path(@task)
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @travel_plan = TravelPlan.find(params[:travel_plan_id])
+    task = @travel_plan.tasks.find(params[:id])
+    task.destroy!
+    redirect_to travel_plan_tasks_path
+  end
+
   private
 
   def task_params

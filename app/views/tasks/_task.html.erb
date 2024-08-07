@@ -6,7 +6,10 @@
           <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
             <span class="font-semibold title-font text-gray-700">PACKING TASK</span>
             <div class="mt-1 text-gray-500 text-sm">
-              <h3>出発日</h3>
+              <h3>期日</h3>
+              <span><%= task.due %></span>
+            </div>
+            <div class="mt-1 text-gray-500 text-sm">
               <span>
                 <%= f.label :status, "進捗状況", class: "leading-7 text-sm text-gray-600" %>
                 <%= f.select :status, Task.status.options, {}, class: "leading-7 text-sm text-gray-600" %>
@@ -23,6 +26,12 @@
             <p class="text-indigo-500 inline-flex items-center mt-4">
               <%= f.label :baggage, "荷物の形態", class: "leading-7 text-sm text-gray-600" %>
               <%= f.select :baggage, Task.baggage.options, {}, class: "leading-7 text-sm text-gray-600" %>
+            </p>
+            <p class="text-indigo-500 inline-flex items-center mt-4">
+              <%= link_to "編集", edit_travel_plan_task_path(@travel_plan, task) %>
+            </p>
+            <p class="text-indigo-500 inline-flex items-center mt-4">
+              <%= link_to "削除", travel_plan_task_path(@travel_plan, task), data: { turbo_method: :delete } %>
             </p>
           </div>
         <% end %>
