@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_travel_plan
   def index
-    @tasks = @travel_plan.tasks
+    @tasks = @travel_plan.tasks.page(params[:page]).per(10)
   end
 
   def new

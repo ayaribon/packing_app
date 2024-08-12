@@ -1,6 +1,6 @@
 class TravelPlansController < ApplicationController
     def index
-      @travel_plans = TravelPlan.where(user_id: current_user.id).includes(:user).order("created_at DESC")
+      @travel_plans = TravelPlan.where(user_id: current_user.id).includes(:user).order("created_at DESC").page(params[:page]).per(9)
     end
 
     def new
