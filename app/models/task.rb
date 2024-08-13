@@ -4,6 +4,7 @@ class Task < ApplicationRecord
   enumerize :baggage, in: %i(carry leave)
 
   validates :body, length: { maximum: 30 }
+  validates :title, presence: true
 
   belongs_to :travel_plan
   belongs_to :user

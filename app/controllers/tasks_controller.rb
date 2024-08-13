@@ -12,9 +12,10 @@ class TasksController < ApplicationController
     @task = @travel_plan.tasks.build(task_params)
     @task.user = current_user
     if @task.save
-      redirect_to travel_plan_tasks_path(@travel_plan)
+      redirect_to travel_plan_tasks_path(@travel_plan), success: t('tasks.create.success')
     else
-      render :new
+      flash.now[:danger] = t('tasks.create.failure')
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -25,8 +26,9 @@ class TasksController < ApplicationController
   def update
     @task = @travel_plan.tasks.find(params[:id])
     if @task.update(task_params)
-      redirect_to travel_plan_tasks_path(@travel_plan)
+      redirect_to travel_plan_tasks_path(@travel_plan), success: t('tasks.update.success')
     else
+      flash.now[:danger] = t('tasks.update.failure')
       render :edit, status: :unprocessable_entity
     end
   end
@@ -34,7 +36,7 @@ class TasksController < ApplicationController
   def destroy
     task = @travel_plan.tasks.find(params[:id])
     task.destroy!
-    redirect_to travel_plan_tasks_path
+    redirect_to travel_plan_tasks_path, success: t('travel_plans.destroy.success')
   end
 
   private
