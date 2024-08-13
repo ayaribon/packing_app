@@ -6,8 +6,6 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-Bundler.require(*Rails.groups)
-
 module Myapp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
@@ -28,5 +26,11 @@ module Myapp
       g.helper false
       g.test_framework nil
     end
+
+    # Set default locale to Japanese
+    config.i18n.default_locale = :ja
+
+    # Add locale files to load path
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
   end
 end
