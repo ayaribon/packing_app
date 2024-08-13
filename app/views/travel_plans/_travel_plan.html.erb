@@ -16,11 +16,14 @@
       <p class="leading-relaxed text-base">
         <%= travel_plan.note %>
       </p>
-      <a class="mt-3 text-indigo-500 flex">
+      <div class="mt-3 text-indigo-500 flex justify-between">
         <%= link_to "荷造り計画を立てる→", new_travel_plan_task_path(travel_plan) %>
-        <%= link_to "編集", edit_travel_plan_path(travel_plan) %>
-        <%= link_to "削除", travel_plan_path(travel_plan), data: { turbo_method: :delete } %>
-      </a>
+        <div class="flex ml-auto space-x-4">
+          <%= link_to "編集", edit_travel_plan_path(travel_plan) %>
+          <%= link_to "削除", travel_plan_path(travel_plan), data: { turbo_method: :delete } %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+

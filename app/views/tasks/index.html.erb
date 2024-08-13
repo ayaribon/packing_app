@@ -12,6 +12,7 @@
         <thead>
           <tr>
             <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">Title</th>
+            <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Note</th>
             <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Baggage Type</th>
             <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Edit</th>
             <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Delete</th>
@@ -22,6 +23,7 @@
           <% @tasks.each do |task| %>
             <tr>
               <td class="px-4 py-3"><%= task.title %></td>
+              <td class="px-4 py-3"><%= task.body %></td>
               <td class="px-4 py-3"><%= task.baggage %></td>
               <td class="px-4 py-3"><%= link_to "編集", edit_travel_plan_task_path(@travel_plan, task) %></td>
               <td class="px-4 py-3"><%= link_to "削除", travel_plan_task_path(@travel_plan, task), data: { turbo_method: :delete } %></td>
@@ -34,3 +36,4 @@
     <%= paginate @tasks %>
   </div>
 </section>
+

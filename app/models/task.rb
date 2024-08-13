@@ -3,6 +3,8 @@ class Task < ApplicationRecord
   enumerize :status, in: %i(pending working done)
   enumerize :baggage, in: %i(carry leave)
 
+  validates :body, length: { maximum: 30 }
+
   belongs_to :travel_plan
   belongs_to :user
 end
