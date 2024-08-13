@@ -54,6 +54,7 @@ ja:
     index:
       title: 荷造りタスク一覧
       create_task: 荷造りタスクを追加する
+      search: 絞り込み
     edit:
       title: 荷造りタスク編集
       subject: 荷造りの内容を編集

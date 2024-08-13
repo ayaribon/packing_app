@@ -28,7 +28,7 @@
     <div class="relative">
       <div class="mb-3">
         <%= f.label t('activerecord.attributes.task.status_type'), class: "leading-7 text-sm text-gray-600" %>
-        <%= f.select :status, options_for_select([['保留中', 'pending'], ['実行中', 'working'],['完了', 'pending']], selected: @task.status) %>
+        <%= f.select :status, options_for_select([['保留中', 'pending'], ['実行中', 'working'],['完了', 'done']], selected: @task.status) %>
       </div>
     </div>
   </div>

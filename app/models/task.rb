@@ -8,4 +8,8 @@ class Task < ApplicationRecord
 
   belongs_to :travel_plan
   belongs_to :user
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["baggage", "body", "created_at", "due", "id", "status", "title", "travel_plan_id", "updated_at", "user_id"]
+  end
 end
