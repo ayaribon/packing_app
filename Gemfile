@@ -77,3 +77,5 @@ gem 'sorcery'
 gem 'enumerize'
 
 gem 'kaminari'
+
+gem 'rails-i18n', '~> 7.0.0'
